@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates - CVPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .template-card { transition: all 0.3s ease; }
+        .template-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .template-preview { aspect-ratio: 3/4; overflow: hidden; }
+        .comparison-table { background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">CV</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">CVPro</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-gray-800 transition-colors">Home</a>
+                    <a href="builder.html" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors">Start Building</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="pt-24 pb-12 bg-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Professional CV Templates</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Choose from our curated collection of modern, ATS-friendly templates designed to help you land your dream job.
+            </p>
+        </div>
+    </section>
+
+    <!-- Template Showcase -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Corporate Pro Template -->
+                <div class="template-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="template-preview">
+                        <img src="resources/template-1.png" alt="Corporate Professional Template" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Corporate Pro</h3>
+                        <p class="text-gray-600 mb-4">Clean two-column layout perfect for business professionals and executives. Features skill progress bars and professional typography.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm text-blue-500 font-medium">Business • Executive</span>
+                            <div class="flex space-x-1">
+                                <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                                <span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+                                <span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+                            </div>
+                        </div>
+                        <button onclick="selectTemplate(1)" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition-colors">
+                            Use This Template
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Creative Modern Template -->
+                <div class="template-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="template-preview">
+                        <img src="resources/template-2.png" alt="Creative Modern Template" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Creative Modern</h3>
+                        <p class="text-gray-600 mb-4">Bold design with visual elements ideal for creative professionals. Features icons, colors, and modern layout structure.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm text-teal-500 font-medium">Creative • Design</span>
+                            <div class="flex space-x-1">
+                                <span class="w-2 h-2 bg-teal-500 rounded-full"></span>
+                                <span class="w-2 h-2 bg-teal-500 rounded-full"></span>
+                                <span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+                            </div>
+                        </div>
+                        <button onclick="selectTemplate(2)" class="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-lg font-semibold transition-colors">
+                            Use This Template
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Classic Minimal Template -->
+                <div class="template-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="template-preview">
+                        <img src="resources/template-3.png" alt="Classic Minimal Template" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Classic Minimal</h3>
+                        <p class="text-gray-600 mb-4">Traditional single-column design perfect for conservative industries. Clean, professional, and timeless layout.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm text-gray-500 font-medium">Finance • Law</span>
+                            <div class="flex space-x-1">
+                                <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+                                <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+                                <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+                            </div>
+                        </div>
+                        <button onclick="selectTemplate(3)" class="w-full bg-gray-600 hover:bg-gray-700 text-white py-3 rounded-lg font-semibold transition-colors">
+                            Use This Template
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tech Innovation Template -->
+                <div class="template-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="template-preview">
+                        <img src="resources/template-4.png" alt="Tech Innovation Template" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Tech Innovation</h3>
+                        <p class="text-gray-600 mb-4">Modern layout with skill visualizations ideal for IT and engineering roles. Features circular progress indicators.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm text-indigo-500 font-medium">Tech • Engineering</span>
+                            <div class="flex space-x-1">
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                                <span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+                            </div>
+                        </div>
+                        <button onclick="selectTemplate(4)" class="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-3 rounded-lg font-semibold transition-colors">
+                            Use This Template
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Executive Premium Template -->
+                <div class="template-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="template-preview">
+                        <img src="resources/template-5.png" alt="Executive Premium Template" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Executive Premium</h3>
+                        <p class="text-gray-600 mb-4">Sophisticated design with premium styling for senior leadership positions. Elegant and commanding presence.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm text-purple-500 font-medium">Executive • C-Suite</span>
+                            <div class="flex space-x-1">
+                                <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                                <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                                <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                            </div>
+                        </div>
+                        <button onclick="selectTemplate(5)" class="w-full bg-purple-500 hover:bg-purple-600 text-white py-3 rounded-lg font-semibold transition-colors">
+                            Use This Template
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Startup Creative Template -->
+                <div class="template-card bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="template-preview">
+                        <img src="resources/template-6.png" alt="Startup Creative Template" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Startup Creative</h3>
+                        <p class="text-gray-600 mb-4">Contemporary asymmetric design perfect for marketing and startup roles. Dynamic and eye-catching layout.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-sm text-green-500 font-medium">Marketing • Startup</span>
+                            <div class="flex space-x-1">
+                                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                <span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+                            </div>
+                        </div>
+                        <button onclick="selectTemplate(6)" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-semibold transition-colors">
+                            Use This Template
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison -->
+    <section class="py-16 comparison-table">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Template Features</h2>
+                <p class="text-lg text-gray-600">Compare features across all our professional templates</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-800">Feature</th>
+                                <th class="px-6 py-4 text-center text-sm font-semibold text-gray-800">Corporate Pro</th>
+                                <th class="px-6 py-4 text-center text-sm font-semibold text-gray-800">Creative Modern</th>
+                                <th class="px-6 py-4 text-center text-sm font-semibold text-gray-800">Classic Minimal</th>
+                                <th class="px-6 py-4 text-center text-sm font-semibold text-gray-800">Tech Innovation</th>
+                                <th class="px-6 py-4 text-center text-sm font-semibold text-gray-800">Executive Premium</th>
+                                <th class="px-6 py-4 text-center text-sm font-semibold text-gray-800">Startup Creative</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 text-sm text-gray-800 font-medium">ATS Friendly</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 text-sm text-gray-800 font-medium">Skill Progress Bars</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 text-sm text-gray-800 font-medium">Two-Column Layout</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">-</td>
+                                <td class="px-6 py-4 text-center">-</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">-</td>
+                                <td class="px-6 py-4 text-center">-</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 text-sm text-gray-800 font-medium">Visual Elements</td>
+                                <td class="px-6 py-4 text-center">-</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">-</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 text-sm text-gray-800 font-medium">Color Customization</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">-</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-6 py-4 text-sm text-gray-800 font-medium">Print Optimized</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                                <td class="px-6 py-4 text-center">✓</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-500 to-teal-500">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4">Ready to Create Your Professional CV?</h2>
+            <p class="text-xl text-blue-100 mb-8">
+                Choose your favorite template and start building a CV that gets you noticed by recruiters.
+            </p>
+            <a href="builder.html" class="bg-white text-blue-500 hover:text-blue-600 px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 inline-block">
+                Start Building Your CV
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">CV</span>
+                </div>
+                <span class="text-xl font-bold">CVPro</span>
+            </div>
+            <p class="text-gray-400">© 2024 CVPro. Build professional CVs with confidence.</p>
+        </div>
+    </footer>
+
+    <script>
+        function selectTemplate(templateId) {
+            localStorage.setItem('selectedTemplate', templateId);
+            window.location.href = 'builder.html';
+        }
+
+        // Animate template cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.template-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

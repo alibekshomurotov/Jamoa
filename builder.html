@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Builder - CVPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .form-section { transition: all 0.3s ease; }
+        .form-section.active { border-left: 4px solid #4299E1; background-color: #f8fafc; }
+        .preview-container { background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); }
+        .cv-preview { background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .skill-bar { transition: width 0.8s ease; }
+        .template-modern { font-family: 'Inter', sans-serif; }
+        .template-classic { font-family: 'Georgia', serif; }
+        .template-creative { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">CV</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">CVPro</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="saveToLocalStorage()" class="text-gray-600 hover:text-gray-800 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                        </svg>
+                    </button>
+                    <button onclick="exportToPDF()" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors">
+                        Export PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-20 min-h-screen">
+        <div class="flex h-screen">
+            <!-- Form Section -->
+            <div class="w-1/2 bg-white border-r border-gray-200 overflow-y-auto">
+                <div class="p-6">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-8">Build Your CV</h1>
+                    
+                    <!-- Template Selection -->
+                    <div class="mb-8">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Choose Template</h2>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="template-option cursor-pointer p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 transition-colors" onclick="changeTemplate('modern')">
+                                <div class="w-full h-20 bg-gradient-to-r from-blue-500 to-teal-500 rounded mb-2"></div>
+                                <p class="text-sm text-center">Modern</p>
+                            </div>
+                            <div class="template-option cursor-pointer p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 transition-colors" onclick="changeTemplate('classic')">
+                                <div class="w-full h-20 bg-gradient-to-r from-gray-600 to-gray-800 rounded mb-2"></div>
+                                <p class="text-sm text-center">Classic</p>
+                            </div>
+                            <div class="template-option cursor-pointer p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 transition-colors" onclick="changeTemplate('creative')">
+                                <div class="w-full h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded mb-2"></div>
+                                <p class="text-sm text-center">Creative</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information -->
+                    <div class="form-section active p-6 rounded-lg mb-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Personal Information</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                <input type="text" id="fullName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="John Doe" oninput="updatePreview()">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Job Title</label>
+                                <input type="text" id="jobTitle" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Software Engineer" oninput="updatePreview()">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="john@example.com" oninput="updatePreview()">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="+1 (555) 123-4567" oninput="updatePreview()">
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Professional Summary</label>
+                            <textarea id="summary" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Brief overview of your professional background and key achievements..." oninput="updatePreview()"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="form-section p-6 rounded-lg mb-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Work Experience</h3>
+                            <button onclick="addExperience()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                Add Experience
+                            </button>
+                        </div>
+                        <div id="experience-section">
+                            <!-- Experience entries will be added here -->
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="form-section p-6 rounded-lg mb-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Education</h3>
+                            <button onclick="addEducation()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                Add Education
+                            </button>
+                        </div>
+                        <div id="education-section">
+                            <!-- Education entries will be added here -->
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="form-section p-6 rounded-lg mb-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Skills</h3>
+                            <button onclick="addSkill()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                Add Skill
+                            </button>
+                        </div>
+                        <div id="skills-section">
+                            <!-- Skills will be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="w-1/2 preview-container p-6 overflow-y-auto">
+                <div class="sticky top-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold text-gray-800">Live Preview</h2>
+                        <div class="flex space-x-2">
+                            <button onclick="zoomPreview('out')" class="p-2 text-gray-600 hover:text-gray-800 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"></path>
+                                </svg>
+                            </button>
+                            <button onclick="zoomPreview('in')" class="p-2 text-gray-600 hover:text-gray-800 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="cv-preview" class="cv-preview rounded-lg overflow-hidden" style="transform: scale(0.7); transform-origin: top left;">
+                        <!-- CV preview will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

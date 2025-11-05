@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVPro - Modern CV Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-bg { background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .template-card { aspect-ratio: 3/4; overflow: hidden; }
+        .template-card img { transition: transform 0.3s ease; }
+        .template-card:hover img { transform: scale(1.05); }
+        .gradient-text { background: linear-gradient(135deg, #4299E1, #38B2AC); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">CV</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">CVPro</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#templates" class="text-gray-600 hover:text-gray-800 transition-colors">Templates</a>
+                    <a href="#features" class="text-gray-600 hover:text-gray-800 transition-colors">Features</a>
+                    <a href="builder.html" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg pt-24 pb-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="space-y-4">
+                        <h1 class="text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
+                            Create Your Perfect
+                            <span class="gradient-text" id="typed-text"></span>
+                        </h1>
+                        <p class="text-xl text-gray-600 leading-relaxed">
+                            Build professional CVs with our modern templates. Export to PDF in seconds and land your dream job with confidence.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="builder.html" class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 text-center">
+                            Start Building
+                        </a>
+                        <a href="#templates" class="border-2 border-gray-300 hover:border-gray-400 text-gray-700 px-8 py-4 rounded-lg font-semibold transition-all hover:bg-gray-50 text-center">
+                            View Templates
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="resources/hero-image.png" alt="Professional CV Builder" class="w-full h-auto rounded-2xl shadow-2xl">
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full opacity-20 animate-pulse"></div>
+                    <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-20 animate-pulse delay-1000"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Section -->
+    <section id="templates" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Professional Templates</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Choose from our collection of modern, ATS-friendly templates designed by career experts to make you stand out.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Template 1 -->
+                <div class="template-card card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="selectTemplate(1)">
+                    <img src="resources/template-1.png" alt="Corporate Professional Template" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Corporate Pro</h3>
+                        <p class="text-gray-600 mb-4">Clean two-column layout perfect for business professionals and executives.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-blue-500 font-medium">Business • Executive</span>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                Use Template
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 2 -->
+                <div class="template-card card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="selectTemplate(2)">
+                    <img src="resources/template-2.png" alt="Creative Modern Template" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Creative Modern</h3>
+                        <p class="text-gray-600 mb-4">Bold design with visual elements ideal for creative professionals and designers.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-teal-500 font-medium">Creative • Design</span>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                Use Template
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 3 -->
+                <div class="template-card card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="selectTemplate(3)">
+                    <img src="resources/template-3.png" alt="Classic Minimal Template" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Classic Minimal</h3>
+                        <p class="text-gray-600 mb-4">Traditional single-column design perfect for conservative industries.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500 font-medium">Finance • Law</span>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                Use Template
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 4 -->
+                <div class="template-card card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="selectTemplate(4)">
+                    <img src="resources/template-4.png" alt="Tech Innovation Template" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Tech Innovation</h3>
+                        <p class="text-gray-600 mb-4">Modern layout with skill visualizations ideal for IT and engineering roles.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-indigo-500 font-medium">Tech • Engineering</span>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                Use Template
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 5 -->
+                <div class="template-card card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="selectTemplate(5)">
+                    <img src="resources/template-5.png" alt="Executive Premium Template" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Executive Premium</h3>
+                        <p class="text-gray-600 mb-4">Sophisticated design with premium styling for senior leadership positions.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-purple-500 font-medium">Executive • C-Suite</span>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                Use Template
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 6 -->
+                <div class="template-card card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="selectTemplate(6)">
+                    <img src="resources/template-6.png" alt="Startup Creative Template" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Startup Creative</h3>
+                        <p class="text-gray-600 mb-4">Contemporary asymmetric design perfect for marketing and startup roles.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-green-500 font-medium">Marketing • Startup</span>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                Use Template
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Why Choose CVPro?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Everything you need to create a professional CV that gets noticed by recruiters and hiring managers.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Fast & Easy</h3>
+                    <p class="text-gray-600">Create a professional CV in minutes with our intuitive builder and pre-designed templates.</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">ATS Optimized</h3>
+                    <p class="text-gray-600">Our templates are designed to pass Applicant Tracking Systems and get you noticed.</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Multiple Templates</h3>
+                    <p class="text-gray-600">Choose from various professionally designed templates for different industries and roles.</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">PDF Export</h3>
+                    <p class="text-gray-600">Download your CV as a high-quality PDF that maintains perfect formatting and design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-500 to-teal-500">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4">Ready to Build Your Professional CV?</h2>
+            <p class="text-xl text-blue-100 mb-8">
+                Join thousands of professionals who have landed their dream jobs with our modern CV templates.
+            </p>
+            <a href="builder.html" class="bg-white text-blue-500 hover:text-blue-600 px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 inline-block">
+                Start Creating Your CV
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-teal-500 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">CV</span>
+                </div>
+                <span class="text-xl font-bold">CVPro</span>
+            </div>
+            <p class="text-gray-400">© 2024 CVPro. Build professional CVs with confidence.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize typed text effect
+        document.addEventListener('DOMContentLoaded', function() {
+            new Typed('#typed-text', {
+                strings: ['CV', 'Resume', 'Career'],
+                typeSpeed: 100,
+                backSpeed: 50,
+                backDelay: 2000,
+                loop: true,
+                showCursor: true,
+                cursorChar: '|'
+            });
+
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe template cards
+            document.querySelectorAll('.template-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+
+        function selectTemplate(templateId) {
+            // Store selected template and redirect to builder
+            localStorage.setItem('selectedTemplate', templateId);
+            window.location.href = 'builder.html';
+        }
+    </script>
+</body>
+</html>
